@@ -1,0 +1,112 @@
+name: Update Citation Counts
+
+on:
+  schedule:
+    # Runs every Monday at 08:00 UTC
+    - cron: '0 8 * * 1'
+  workflow_dispatch: # allow manual trigger from GitHub Actions tab
+
+jobs:
+  update-citations:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Fetch citation data and update index.html
+        run: |
+          python3 - <<'EOF'
+          import re
+          import requests
+          from bs4 import BeautifulSoup
+
+          SCHOLAR_URL = "https://scholar.google.com/citations?user=fcOP0tgAAAAJ&hl=en"
+          HEADERS = {
+              "User-Agent": (
+                  "Mozilla/5.0 (compatible; CitationBot/1.0; "
+                  "+https://github.com/${{ github.repository }})"
+              )
+          }
+
+          try:
+              resp = requests.get(SCHOLAR_URL, headers=HEADERS, timeout=15)
+              resp.raise_for_status()
+          except Exception as e:
+              print(f"Failed to fetch Scholar page: {e}")
+              exit(0)  # Don't fail the workflow if Scholar is unreachable
+
+          soup = BeautifulSoup(resp.text, "html.parser")
+
+          # Pull all-time citations, h-index, i10-index from the stats table
+          cells = soup.select("td.gsc_rsb_std")
+          if len(cells) < 6:
+              print("Unexpected Scholar page structure — skipping update")
+              exit(0)
+
+          total_citations = cells[0].get_text(strip=True)
+          h_index        = cells[2].get_text(strip=True)
+          i10_index      = cells[4].get_text(strip=True)
+
+          print(f"Citations: {total_citations}, h-index: {h_index}, i10-index: {i10_index}")
+
+          # Pull per-paper citation counts (in listed order)
+          paper_cite_cells = soup.select("td.gsc_a_c a")
+          paper_cites = [c.get_text(strip=True) for c in paper_cite_cells]
+          print(f"Per-paper citations: {paper_cites}")
+
+          # ── Update index.html ──────────────────────────────────────────────
+          with open("index.html", "r", encoding="utf-8") as f:
+              html = f.read()
+
+          # Aggregate stats
+          html = re.sub(
+              r'(<span class="stat-num" id="stat-citations">)\d+(</span>)',
+              rf'\g<1>{total_citations}\g<2>', html
+          )
+          html = re.sub(
+              r'(<span class="stat-num" id="stat-hindex">)\d+(</span>)',
+              rf'\g<1>{h_index}\g<2>', html
+          )
+          html = re.sub(
+              r'(<span class="stat-num" id="stat-i10">)\d+(</span>)',
+              rf'\g<1>{i10_index}\g<2>', html
+          )
+
+          # Per-paper badges (cite-0, cite-1, cite-2 …)
+          for i, count in enumerate(paper_cites[:10]):
+              if not count:
+                  continue
+              html = re.sub(
+                  rf'(<span class="badge badge-cite" id="cite-{i}">)\d+ citations(</span>)',
+                  rf'\g<1>{count} citations\g<2>', html
+              )
+
+          with open("index.html", "w", encoding="utf-8") as f:
+              f.write(html)
+
+          print("index.html updated successfully.")
+          EOF
+
+      - name: Commit changes (if any)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No citation changes — nothing to commit."
+          else
+            git commit -m "chore: update citation counts [skip ci]"
+            git push
+          fi
