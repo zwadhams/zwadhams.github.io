@@ -128,7 +128,7 @@ section,footer {
   position:relative;
   z-index:1
 }
-.hero-tag,.section-label,.orbit-caption {
+.hero-tag,.section-label {
   font-family:'JetBrains Mono',monospace;
   font-size:10px;
   letter-spacing:2px;
@@ -328,15 +328,6 @@ h1 .gradient {
   left:8%;
   bottom:27%
 }
-.orbit-caption {
-  position:absolute;
-  bottom:-35px;
-  width:100%;
-  text-align:center;
-  font-size:8px;
-  color:#828c97;
-  letter-spacing:2.6px
-}
 
 .section-inner {
   border-top:1px solid var(--border);
@@ -429,7 +420,7 @@ strong {
 
 .research-grid {
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(2,1fr);
   gap:34px 40px
 }
 .research-card {
@@ -649,9 +640,6 @@ h1 {
   height:300px;
   transform:scale(.72);
   margin:-10px -30px -25px
-}
-.orbit-caption {
-  bottom:-36px
 }
 .hero-affiliation {
   font-size:11px

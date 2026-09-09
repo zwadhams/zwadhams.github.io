@@ -196,11 +196,10 @@ def render_publications(snapshot):
                     (-p["citations"], -(p["year"] or 0), p["title"].casefold()))
     rows = [
         '    <p class="publication-note">'
-        f'{len(papers)} works, from software security to high performance computing. '
         f'<a href="https://scholar.google.com/citations?user={AUTHOR_ID}&amp;hl=en" '
-        'target="_blank" rel="noopener noreferrer">Google Scholar</a> lists '
-        f'{snapshot["total_citations"]} citations and an h-index of {snapshot["h_index"]} '
-        f'as of {label}. Sorted by citation count, highest first.</p>',
+        'target="_blank" rel="noopener noreferrer">Google Scholar</a>: '
+        f'{len(papers)} works, {snapshot["total_citations"]} citations, '
+        f'h-index {snapshot["h_index"]}. Last checked {label}.</p>',
         '    <div class="pub-list">',
     ]
     for paper in papers:
