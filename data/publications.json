@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "scholar_id": "fcOP0tgAAAAJ",
+  "checked_at": "2026-09-09",
+  "total_citations": 58,
+  "h_index": 3,
+  "publications": [
+    {
+      "id": "fcOP0tgAAAAJ:u-x6o8ySG0sC",
+      "title": "Barriers to Using Static Application Security Testing (SAST) Tools: A Literature Review",
+      "authors": "Z. Wadhams, C. Izurieta, A.M. Reinhold",
+      "venue": "ASEW '24 / Sacramento, California / pp. 161-166",
+      "year": 2024,
+      "citations": 29
+    },
+    {
+      "id": "fcOP0tgAAAAJ:u5HHmVD_uO8C",
+      "title": "Automating Static Code Analysis Through CI/CD Pipeline Integration",
+      "authors": "Z. Wadhams, A.M. Reinhold, C. Izurieta",
+      "venue": "SANER-C '24 / Rovaniemi, Finland / pp. 119-125",
+      "year": 2024,
+      "citations": 26
+    },
+    {
+      "id": "fcOP0tgAAAAJ:2osOgNQ5qMEC",
+      "title": "Wicked Problem, Parsimonious Solution: Securing Electric Vehicle Charging Station Software",
+      "authors": "E. Sheppard, Z. Wadhams, D. Arford, C. Izurieta, A.M. Reinhold",
+      "venue": "IEEE CSR '25 / Chania, Crete, Greece",
+      "year": 2025,
+      "citations": 3
+    },
+    {
+      "id": "fcOP0tgAAAAJ:zYLM7Y9cAGgC",
+      "title": "Characterizing and Codifying Malware Sophistication",
+      "authors": "A. Porcella, Z. Wadhams, C. Izurieta, J. Crussell, A.M. Reinhold",
+      "venue": "IEEE I-ETC '26 / Provo, Utah",
+      "year": 2026,
+      "citations": 0
+    },
+    {
+      "id": "fcOP0tgAAAAJ:IjCSPb-OGe4C",
+      "title": "How Well Do SAST Tools Work Across Languages? An Empirical Study Using OCPP Implementations",
+      "authors": "Z. Wadhams, E. Sheppard, D. Arford, C. Izurieta, A.M. Reinhold",
+      "venue": "IEEE CSR '26 / IEEE International Conference on Cyber Security and Resilience",
+      "year": 2026,
+      "citations": 0
+    },
+    {
+      "id": "fcOP0tgAAAAJ:9yKSN-GCB0IC",
+      "title": "On Improving the Adoption, Usability, and Retention of Static Application Security Testing (SAST) Tools",
+      "authors": "Z.D. Wadhams",
+      "venue": "MS Thesis / Montana State University",
+      "year": 2024,
+      "citations": 0
+    },
+    {
+      "id": "fcOP0tgAAAAJ:qjMakFHDy7sC",
+      "title": "Performance Analysis of Non-Volatile Memory Express Over Fabrics (NVMeoF)  Using Infiniband and Ethernet (Internship Final Project)",
+      "authors": "Z. Wadhams, C. Collins, J. Sarrao",
+      "venue": "Los Alamos National Laboratory / High Performance Computing Division / Internship Final Project",
+      "year": 2022,
+      "citations": 0
+    }
+  ]
+}
