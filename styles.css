@@ -361,6 +361,41 @@ section:not(#hero) {
 .section-label {
   margin-bottom:20px
 }
+.wiki-feature {
+  max-width:1080px;
+  margin:auto;
+  padding:36px 40px;
+  display:flex;
+  align-items:center;
+  gap:40px;
+  background:#18201f;
+  border:1px solid #c8d5c033;
+  border-left:3px solid var(--accent);
+  border-radius:3px
+}
+.wiki-copy {
+  flex:1;
+  min-width:0
+}
+.wiki-feature .section-label {
+  margin-bottom:12px
+}
+.wiki-feature h2 {
+  margin:0 0 20px
+}
+.wiki-feature p {
+  max-width:680px;
+  font-size:14px;
+  line-height:1.9;
+  color:var(--muted);
+  margin:0 0 14px
+}
+.wiki-feature p:last-child {
+  margin-bottom:0
+}
+.wiki-cta {
+  flex-shrink:0
+}
 h2 {
   font-size:clamp(27px,3vw,36px);
   font-weight:400;
@@ -576,6 +611,11 @@ footer h2 {
 }
 
 @media(max-width:900px) {
+  .wiki-feature {
+  flex-direction:column;
+  align-items:flex-start;
+  gap:24px
+}
   nav {
   padding:22px 32px
 }
@@ -609,6 +649,9 @@ h1 {
 }
 
 @media(max-width:600px) {
+  .wiki-feature {
+  padding:26px 24px
+}
   html {
   scroll-padding-top:25px
 }
