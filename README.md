@@ -33,6 +33,20 @@ See GitHub's [custom Pages workflow documentation](https://docs.github.com/en/pa
 ## Edit the website
 
 - Edit `index.html` for the layout and biography, and `styles.css` for appearance.
+- `site.js` controls active navigation and the decorative signal analyzer.
+  Two scrolling traces combine generated carrier waves, correlated noise, and
+  random spikes. An amber waterfall follows the carrier's frequency content,
+  retaining 12.8 seconds of history with high-DPI rendering, distinct color
+  contours, and connected highlights along resolved frequency peaks.
+  The response trace uses warm coral. Sample and gain readouts update every
+  1.5 seconds. No live research data or audio input is used.
+  Motion pauses offscreen, in hidden tabs, and when reduced motion is requested.
+  The Pause motion button also stops the simulated readouts; content works without JavaScript.
+- Departure Mono 1.500 is self-hosted in `assets/fonts/`, alongside its SIL OFL
+  license. The font is by Helena Zhang; source: https://github.com/rektdeckard/departure-mono.
+  Headings and controls use Departure Mono; body text retains Inter with an Arial fallback.
+- `SITE_ASSETS` in the build script explicitly lists deployable assets. Add new
+  site assets there and update the packaging test when changing this list.
 - Keep the `publications:start` and `publications:end` comments in `index.html`.
   The build replaces only the content between them.
 - [data/publications.json](data/publications.json) contains the initial verified
@@ -100,8 +114,11 @@ The test suite runs without network access or third-party dependencies:
 
 ```powershell
 python -m unittest discover -s tests -v
+node --test tests/test_signal.cjs
 ```
 
 Tests cover matching by Scholar ID, adding papers, sorting, hiding zero counts,
 HTML escaping, incomplete responses, timeouts, preserving the last snapshot, and
 packaging the site without modifying its source files.
+The Node checks cover signal variation, readable readout changes, bounded traces,
+and freezing the display for pause, reduced motion, hidden tabs, and offscreen panels.

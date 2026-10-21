@@ -4,38 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Zachary Wadhams, PhD student at Montana State University. Research in static application security testing, tool adoption and usability, and malware analysis." />
-  <meta name="theme-color" content="#101419" />
+  <meta name="theme-color" content="#252321" />
   <title>Zachary Wadhams | Cybersecurity Researcher</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preload" href="assets/fonts/DepartureMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="styles.css" />
+  <script src="site.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
 
-<nav aria-label="Main navigation">
-  <a class="logo" href="#hero" aria-label="Zachary Wadhams, home"><span class="logo-orbit" aria-hidden="true"></span> ZW<span class="logo-dot">.</span></a>
+<nav class="site-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+  <a class="logo" href="#hero" aria-label="Zachary Wadhams, home"><span class="logo-mark" aria-hidden="true">[ZW]</span><span class="logo-caption">RESEARCH<br> ARCHIVE</span></a>
   <ul>
     <li><a href="#about">About</a></li>
     <li><a href="#research">Research</a></li>
     <li><a href="#publications">Publications</a></li>
     <li><a href="#experience">Experience</a></li>
-    <li><a href="mailto:zwadhams@gmail.com">Contact</a></li>
+    <li><a href="#contact">Contact</a></li>
     <li><a class="nav-wiki" href="https://zwadhams.github.io/ToolWiki/">Tool Wiki <span aria-hidden="true">&nearr;</span></a></li>
   </ul>
+  </div>
 </nav>
 
 
 <main id="main">
 <section id="hero" aria-labelledby="intro-title">
+  <div class="hero-register"><span>PERSONAL ARCHIVE / 00</span><span>BOZEMAN, MONTANA</span></div>
   <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-tag">CYBERSECURITY RESEARCHER</div>
       <h1 id="intro-title">
         Zachary<br />
-        <span class="gradient">Wadhams</span>
+        <span class="name-accent">Wadhams</span>
       </h1>
       <p class="hero-sub">I study static analysis tools and their use in software security.</p>
       <p class="hero-affiliation">PhD student at Montana State University.<br />Software Engineering &amp; Cybersecurity Laboratory.</p>
@@ -43,15 +48,44 @@
 
 
     </div>
-    <div class="orbital-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><div class="planet"></div><span class="moon"></span><span class="moon moon-two"></span><span class="star star-one"></span><span class="star star-two"></span><span class="star star-three"></span></div>
+    <figure class="signal-display" aria-label="Decorative signal analyzer with generated waveforms">
+      <div class="display-header" aria-hidden="true"><span>SIGNAL ANALYZER</span></div>
+      <div class="display-channels" aria-hidden="true"><span>CH 01 / CARRIER</span><span>CH 02 / RESPONSE</span></div>
+      <div class="display-screen" aria-hidden="true">
+        <svg class="signal-graphic" viewBox="0 0 520 240" fill="none" focusable="false">
+          <defs><clipPath id="screen-clip"><rect x="24" y="20" width="472" height="210" /></clipPath></defs>
+          <path class="signal-grid" d="M24 20H496V230H24ZM83 20V230M142 20V230M201 20V230M260 20V230M319 20V230M378 20V230M437 20V230M24 80H496M24 130H496M24 180H496" />
+          <g clip-path="url(#screen-clip)">
+            <path class="signal-trace signal-carrier" d="M24 84L34 80L44 73L54 68L64 73L74 85L84 89L91 78L96 42L100 94L106 84L116 77L126 70L136 74L146 82L156 89L166 87L176 76L186 69L196 77L202 82L207 57L212 95L218 86L228 75L238 69L248 75L258 84L268 88L278 78L288 70L298 75L308 84L318 88L328 79L336 73L341 35L346 101L351 85L361 74L371 70L381 77L391 85L401 88L411 77L421 72L431 79L439 86L445 56L450 97L456 85L466 76L476 71L486 78L496 84" />
+            <path class="signal-trace signal-response" d="M24 180L36 185L48 180L60 174L72 177L84 184L96 188L108 172L114 155L119 191L126 181L138 175L150 179L162 186L174 184L186 176L198 174L210 182L222 185L231 166L237 190L246 181L258 175L270 180L282 186L294 183L306 176L318 179L330 185L342 182L351 171L358 152L364 192L372 184L384 177L396 180L408 185L420 182L432 174L444 180L457 184L466 166L473 190L480 183L488 176L496 180" />
+          </g>
+        </svg>
+      </div>
+      <div class="waterfall" aria-hidden="true">
+        <div class="waterfall-label"><span>CH 01 / FREQUENCY HISTORY</span><span>NEWEST AT TOP</span></div>
+        <canvas class="waterfall-canvas" width="512" height="256" hidden></canvas>
+        <svg class="waterfall-static" viewBox="0 0 512 100" preserveAspectRatio="none" focusable="false">
+          <rect width="512" height="100" fill="#252321"/>
+          <path d="M22 0L27 12L20 25L24 40L19 55L26 70L21 85L24 100M63 0L57 16L66 30L59 48L68 62L60 78L64 100M104 0L112 18L101 34M100 53L109 68L103 86L110 100M162 8L153 24L165 40M157 61L169 79L160 100M218 0L229 17L221 36M220 68L231 84L223 100" fill="none" stroke="#573418" stroke-width="22"/>
+          <path d="M22 0L27 12L20 25L24 40L19 55L26 70L21 85L24 100M63 0L57 16L66 30L59 48L68 62L60 78L64 100M104 0L112 18L101 34M100 53L109 68L103 86L110 100M162 8L153 24L165 40M157 61L169 79L160 100M218 0L229 17L221 36M220 68L231 84L223 100" fill="none" stroke="#b0671d" stroke-width="9"/>
+          <path d="M22 0L27 12L20 25L24 40L19 55L26 70L21 85L24 100M63 0L57 16L66 30L59 48L68 62L60 78L64 100M104 0L112 18L101 34M100 53L109 68L103 86L110 100M162 8L153 24L165 40M157 61L169 79L160 100M218 0L229 17L221 36M220 68L231 84L223 100" fill="none" stroke="#ffe2a8" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+        </svg>
+        <div class="waterfall-scale"><span>0 Hz</span><span>7.5 Hz</span><span>15 Hz</span></div>
+      </div>
+      <figcaption class="display-footer">
+        <div class="readouts" aria-hidden="true"><span>SAMPLE <span data-sample>0483</span></span><span>GAIN <span data-gain>0.58</span></span></div>
+        <button class="motion-toggle" type="button" aria-pressed="false" hidden>Pause motion</button>
+      </figcaption>
+    </figure>
   </div>
+  <div class="hero-baseline" aria-hidden="true"><span>STATIC ANALYSIS / SOFTWARE SECURITY</span><span class="baseline-ticks"></span><span>SCROLL TO EXPLORE</span></div>
 </section>
 
 
 <section id="tool-wiki" aria-labelledby="wiki-title">
   <div class="wiki-feature">
     <div class="wiki-copy">
-      <div class="section-label">A PERSONAL PROJECT</div>
+      <div class="section-label">FEATURED PROJECT / TOOL DIRECTORY</div>
       <h2 id="wiki-title">Tool Wiki</h2>
       <p>After working with a variety of software analysis tools, I've found that one of the
         hardest parts is finding a tool that meets my needs. I built this wiki to make that
@@ -247,7 +281,7 @@
       </div>
     </div>
     <!-- publications:end -->
-    <div style="margin-top:1.5rem; text-align:center;">
+    <div class="publication-more">
       <a class="btn btn-ghost" href="https://scholar.google.com/citations?user=fcOP0tgAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">
         View full list on Google Scholar
       </a>
@@ -315,6 +349,7 @@
 </main>
 <footer id="contact">
   <div class="footer-inner">
+    <div class="section-label">05 / CONTACT</div>
     <h2>Contact</h2>
     <div class="footer-links">
       <a href="mailto:zwadhams@gmail.com">
@@ -338,7 +373,8 @@
         ORCID
       </a>
     </div>
-    <div class="footer-copy">Copyright 2026 Zachary Wadhams</div>
+    <div class="footer-copy"><span>Copyright 2026 Zachary Wadhams</span><span class="footer-signoff">END OF ARCHIVE / [ZW]</span></div>
+    <p class="footer-credit">Thanks to <a href="https://helenazhang.com/" target="_blank" rel="noopener">Helena Zhang</a> for Departure Mono.</p>
   </div>
 </footer>
 

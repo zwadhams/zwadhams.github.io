@@ -150,11 +150,30 @@ class PublicationTests(unittest.TestCase):
             generated = (output / "index.html").read_text(encoding="utf-8")
             self.assertEqual(original.split(updater.START)[0], generated.split(updater.START)[0])
             self.assertEqual(original.split(updater.END)[1], generated.split(updater.END)[1])
-            self.assertEqual(set(p.name for p in output.iterdir()),
-                             {"index.html", "styles.css", "headshot.jpg", "publications.json", ".nojekyll"})
+            self.assertEqual({p.relative_to(output).as_posix() for p in output.rglob("*") if p.is_file()},
+                             {"index.html", "styles.css", "site.js", "headshot.jpg", "publications.json", ".nojekyll",
+                              "assets/fonts/DepartureMono-Regular.woff2", "assets/fonts/DepartureMono-LICENSE.txt"})
+            for asset in updater.SITE_ASSETS:
+                self.assertEqual((output / asset).read_bytes(), (updater.ROOT / asset).read_bytes())
             self.assertEqual(updater.load_snapshot(output / "publications.json"), self.previous)
             with self.assertRaisesRegex(ValueError, "not empty"):
                 updater.build_site(self.previous, output)
+
+    def test_missing_required_asset_does_not_create_output(self):
+        for missing in updater.SITE_ASSETS:
+            with self.subTest(asset=missing), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory) / "source"
+                root.mkdir()
+                (root / "index.html").write_bytes((updater.ROOT / "index.html").read_bytes())
+                for asset in updater.SITE_ASSETS:
+                    if asset != missing:
+                        destination = root / asset
+                        destination.parent.mkdir(parents=True, exist_ok=True)
+                        destination.write_bytes((updater.ROOT / asset).read_bytes())
+                output = Path(directory) / "site"
+                with self.assertRaisesRegex(ValueError, "Missing site asset"):
+                    updater.build_site(self.previous, output, root=root)
+                self.assertFalse(output.exists())
 
 
 if __name__ == "__main__":

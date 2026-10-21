@@ -20,6 +20,13 @@ AUTHOR_ID = "fcOP0tgAAAAJ"
 SNAPSHOT_URL = "https://zwadhams.github.io/publications.json"
 START = "<!-- publications:start -->"
 END = "<!-- publications:end -->"
+SITE_ASSETS = (
+    "styles.css",
+    "site.js",
+    "headshot.jpg",
+    "assets/fonts/DepartureMono-Regular.woff2",
+    "assets/fonts/DepartureMono-LICENSE.txt",
+)
 
 
 def nonnegative_int(value, name):
@@ -241,14 +248,15 @@ def build_site(snapshot, output, root=ROOT):
     # A fresh build folder prevents accidental publication of unrelated files.
     if output.exists() and any(output.iterdir()):
         raise ValueError(f"Output directory is not empty: {output}")
-    for asset in ("styles.css", "headshot.jpg"):
+    for asset in SITE_ASSETS:
         if not (root / asset).is_file():
             raise ValueError(f"Missing site asset: {asset}")
     output.mkdir(parents=True, exist_ok=True)
     (output / "index.html").write_text(page, encoding="utf-8")
     (output / "publications.json").write_text(
         json.dumps(snapshot, indent=2, ensure_ascii=True) + "\n", encoding="ascii")
-    for asset in ("styles.css", "headshot.jpg"):
+    for asset in SITE_ASSETS:
+        (output / asset).parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(root / asset, output / asset)
     (output / ".nojekyll").touch()
 
